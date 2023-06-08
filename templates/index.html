@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='animation.css') }}">
+    <title>Sleek  The  Artist</title>
+    <style>
+      body {
+        
+  background: linear-gradient(-45deg, #0d0d0d, #bcadb3, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+  height: 100vh;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+      
+      h1 {
+        color: rgb(248, 236, 8);
+        text-shadow: 1px 1px 2px #333;
+        text-align: center;
+        margin-top: 50px;
+      }
+      form {
+        width: 60%;
+        margin: 0 auto;
+
+        border-radius: 10px;
+        padding: 30px;
+        box-shadow: 0 0 20px rgba(225, 232, 23, 0.2);
+        box-shadow: 0px 0px 30px 1px rgba(127, 233, 235, 0.3);
+        background: linear-gradient(315deg,#03a9f4,#ff0058)
+      }
+      label {
+        font-size: 2em;
+        color: #333;
+        display: block;
+        margin-bottom: 10px;
+      }
+      input[type="text"],
+      select,
+      input[type="number"] {
+        padding: 10px;
+        border-radius: 5px;
+        border: none;
+        font-size: 1.5em;
+        width: 50%;
+        margin-bottom: 20px;
+        background-color: #d6dad9;
+background-image: linear-gradient(90deg, #74EBD5 0%, #9FACE6 100%);
+
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+      }
+      input[type="submit"] {
+        background-color: #ff6d6d;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        font-size: 1.2em;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+      input[type="submit"]:hover {
+        background-color: linear-gradient(180deg, #2af598 0%, #009efd 100%);
+        
+      }
+    </style>
+  </head>
+  <body >
+    <h1>Sleek  The  Artist</h1>
+    <form method="POST" action="{{ url_for('generate') }}">
+      <label for="genre">Select a Genre:</label>
+      <select name="genre" id="genre">
+        <option value="rap">Rap</option>
+        <option value="rnb">R&B</option>
+        <option value="pop">Pop</option>
+        <option value="afrobeat">Afrobeat</option>
+        <option value="reggae">Reggae</option>
+        <option value="gospel">Gospel</option>
+      </select>
+      <br>
+      <label for="verses" >Number of Verses:</label>
+      <input type="number" name="verses" id="verses" min="1" max="4" required>
+      <br>
+      <label for="topic">Topic:</label>
+      <input type="text" name="topic" id="topic" required>
+      <br>
+
+      <button class="btn" type="submit" value="Generate Lyrics">
+        Generate song
+    </button>
+    </form>
+  </body>
+</html>
