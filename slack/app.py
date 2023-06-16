@@ -1,10 +1,10 @@
 from flask import Flask, render_template, request
-from transformers import pipeline
+import openai
 
 app = Flask(__name__)
 
-# Set up Transformers pipeline
-generator = pipeline("text-generation", model="gpt2")
+# Set up OpenAI API
+openai.api_key = "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"
 
 @app.route("/")
 def index():
@@ -16,10 +16,17 @@ def generate():
     genre = request.form["genre"]
     verses = int(request.form["verses"])
 
-    # Generate lyrics using Transformers
+    # Generate lyrics using OpenAI API
     prompt = f"{genre} song with {verses} verses about {request.form['topic']}"
-    response = generator(prompt, max_length=100, num_return_sequences=1)
-    lyrics = response[0]["generated_text"].strip()
+    response = openai.Completion.create(
+        engine="text-davinci-003",
+        prompt=prompt,
+        max_tokens=100,
+        n=1,
+        stop=None,
+        temperature=0.7
+    )
+    lyrics = response.choices[0].text.strip()
 
     # Organize lyrics by verse
     lines = lyrics.split("\n")
