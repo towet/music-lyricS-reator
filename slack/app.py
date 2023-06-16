@@ -1,10 +1,11 @@
 from flask import Flask, render_template, request
 import openai
-
+import os
 app = Flask(__name__)
 
 # Set up OpenAI API
-openai.api_key = "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"
+openai.api_key = os.environ.get('OPENAI_API_KEY')
+
 
 @app.route("/")
 def index():
@@ -46,4 +47,4 @@ def generate():
     return render_template("generate.html", lyrics=lyrics)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, host="0.0.0.0", port=8000)
