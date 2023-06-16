@@ -5,4 +5,5 @@ pip install -r requirements.txt
 export OPENAI_API_KEY="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"
 
 # Start the Flask application using gunicorn
-gunicorn --bind=0.0.0.0 --timeout 600 --chdir slack app:app
+gunicorn --bind=0.0.0.0 --timeout 600 slack.app:app
+
